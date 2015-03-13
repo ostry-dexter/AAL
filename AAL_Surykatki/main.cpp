@@ -1,15 +1,14 @@
 /**
-* Autor: Damian Ostrowski, 237489
-* Przedmiot: AAL, EiTI
+* 
 * Problem: Surykatki
-* Dane wejœciowe:
-* Szerokoœæ rzeki - w
-* Maksymalny zasiêg skoku surykatki - j
+* Dane wejÅ“ciowe:
+* SzerokoÅ“Ã¦ rzeki - w
+* Maksymalny zasiÃªg skoku surykatki - j
 * Liczba krokodyli na rzece - n
-* n wierszy z parami 'b' i 'e' takimi, ¿e b<e
-* Za³o¿enia na dane:
-* Krokodyle s¹ roz³oczne ze sob¹ i brzegami rzeki
-* maksymalna odleg³oœæ miêdzy krokodylami <= j
+* n wierszy z parami 'b' i 'e' takimi, Â¿e b<e
+* ZaÂ³oÂ¿enia na dane:
+* Krokodyle sÂ¹ rozÂ³oczne ze sobÂ¹ i brzegami rzeki
+* maksymalna odlegÂ³oÅ“Ã¦ miÃªdzy krokodylami <= j
 **/
 
 /*
@@ -36,7 +35,7 @@ Test:
 using namespace std;
 
 /**
-* Struktura przechowuj¹ce informacje o krokodylu
+* Struktura przechowujÂ¹ce informacje o krokodylu
 **/
 struct Crocodile
 {
@@ -48,11 +47,11 @@ struct Crocodile
 bool compCrocodile(Crocodile a, Crocodile b) { return (a.begin<b.begin); }
 
 /**
-* Struktura przechowuj¹ce informacje o punkcie reprezentuj¹cym krokodyla.
+* Struktura przechowujÂ¹ce informacje o punkcie reprezentujÂ¹cym krokodyla.
 **/
 struct Point
 {
-	int d; // odleg³oœæ do nastêpnego punktu
+	int d; // odlegÂ³oÅ“Ã¦ do nastÃªpnego punktu
 	int crocodileId; // id krokodyla
 };
 
@@ -102,10 +101,10 @@ int generateRiverWidth(vector<Crocodile> &c, const int &jump)
 
 int main()
 {
-	int jump = generateJump(5, 11); // zasiêg skoku surykatki
+	int jump = generateJump(5, 11); // zasiÃªg skoku surykatki
 	int cNumber = generateNumberOfCrocodiles(100, 101); // liczba krokodyli;
 	vector<Crocodile> crocodiles = generateCrocodiles(cNumber, jump,false); // lista krokodyli
-	int riverWidth = generateRiverWidth(crocodiles, jump); // szerokoœæ rzeki
+	int riverWidth = generateRiverWidth(crocodiles, jump); // szerokoÅ“Ã¦ rzeki
 
 	int jumpSum = 0; // suma obecnych skokow surykatki
 
@@ -113,7 +112,7 @@ int main()
 	tmp.begin = 0;
 	tmp.end = 0;
 	tmp.id = -1;
-	crocodiles.push_back(tmp); // sztuczny pocz¹tek
+	crocodiles.push_back(tmp); // sztuczny poczÂ¹tek
 	tmp.begin = riverWidth;
 	tmp.end = riverWidth;
 	crocodiles.push_back(tmp); // sztuczny koniec
@@ -136,8 +135,8 @@ int main()
 // ----------------------------------------------
 	clock_t start = clock();
 
-	sort(crocodiles.begin(), crocodiles.end(), compCrocodile); // sorotwanie krokodyli wg odleg³oœci od lewego brzegu
-	// lub Smoothsort, Heapsort, Block sort (stabilnoœæ nie jest wymagana) wydajne pamiêciowo
+	sort(crocodiles.begin(), crocodiles.end(), compCrocodile); // sorotwanie krokodyli wg odlegÂ³oÅ“ci od lewego brzegu
+	// lub Smoothsort, Heapsort, Block sort (stabilnoÅ“Ã¦ nie jest wymagana) wydajne pamiÃªciowo
 
 	/*
 	for (vector<Crocodile>::iterator c = crocodiles.begin(); c != crocodiles.end(); ++c)
@@ -153,12 +152,12 @@ int main()
 	for (vector<Crocodile>::iterator c = crocodiles.begin(); c + 1 != crocodiles.end(); ++c)
 	{
 		Point s;
-		s.d = (c + 1)->begin - c->end; // odleg³oœæ miêdzy krokodylami
+		s.d = (c + 1)->begin - c->end; // odlegÂ³oÅ“Ã¦ miÃªdzy krokodylami
 		s.crocodileId = (c + 1)->id;
 	//	cout << s.d << " ";
 	//	stones.push_back(s); // dodaj kamienie
 		
-		if (jumpSum + s.d <= jump) // mo¿esz skoczyæ dalej
+		if (jumpSum + s.d <= jump) // moÂ¿esz skoczyÃ¦ dalej
 		{
 			jumpSum += s.d;
 		}
@@ -175,7 +174,7 @@ int main()
 	
 	for (vector<Point>::iterator s = stones.begin(); s != stones.end(); ++s)
 	{
-		if (jumpSum + s->d <= jump) // mo¿esz skoczyæ dalej
+		if (jumpSum + s->d <= jump) // moÂ¿esz skoczyÃ¦ dalej
 		{
 			jumpSum += s->d;
 		}
@@ -191,7 +190,7 @@ int main()
 // --------------- KONIEC -----------------------
 // ----------------------------------------------
 	printf("Czas wykonywania: %lu ms, dla n = %d\n", clock() - start,cNumber);
-	// poka¿ numery krokodyli po których nale¿y skoczyæ
+	// pokaÂ¿ numery krokodyli po ktÃ³rych naleÂ¿y skoczyÃ¦
 	for (vector<int>::iterator it = id.begin(); it != id.end(); ++it)
 		cout << *it << " ";
 	getchar();
